@@ -58,6 +58,33 @@ public class BinaryControllerTest {
 			.andExpect(model().attribute("operand1", "111"));
     }
 
+    @Test
+    public void testMultiplyWithZero() throws Exception {
+        this.mvc.perform(post("/").param("operand1", "100").param("operator", "*").param("operand2", "0"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+            .andExpect(model().attribute("result", "0"))
+            .andExpect(model().attribute("operand1", "100"));
+    }
+
+    @Test
+    public void testPostMultiplication() throws Exception {
+        this.mvc.perform(post("/").param("operand1", "10").param("operator", "*").param("operand2", "5"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("result"))
+            .andExpect(model().attribute("result", "50"))
+            .andExpect(model().attribute("operand1", "10"));
+    }
+
+    @Test
+    public void testInvalidOperator() throws Exception {
+        this.mvc.perform(post("/").param("operand1", "10").param("operator", "&").param("operand2", "5"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("error"))
+            .andExpect(model().attribute("errorMessage", "Invalid operator"));
+    }
+
+
 
 
 }

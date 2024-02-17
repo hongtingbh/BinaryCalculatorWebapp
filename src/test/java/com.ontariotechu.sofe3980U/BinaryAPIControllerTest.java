@@ -49,26 +49,26 @@ public class BinaryAPIControllerTest {
 			.andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("add"));
     
     }
-    // @Test
-    // public void testSubtract() throws Exception {
-    //     this.mvc.perform(get("/subtract").param("operand1", "100").param("operand2", "50"))
-    //         .andExpect(status().isOk())
-    //         .andExpect(content().string("50"));
-    // }
-    // @Test
-    // public void testSubtractJson() throws Exception {
-    //     this.mvc.perform(get("/subtract_json").param("operand1", "100").param("operand2", "50"))
-    //         .andExpect(status().isOk())
-    //         .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(100))
-    //         .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(50))
-    //         .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(50))
-    //         .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("subtract"));
-    // }
-    // @Test
-    // public void testMultiplyLargeNumbers() throws Exception {
-    //     this.mvc.perform(get("/multiply").param("operand1", "999").param("operand2", "999"))
-    //         .andExpect(status().isOk())
-    //         .andExpect(content().string("998001"));
-    // }
+    @Test
+    public void testSubtract() throws Exception {
+        this.mvc.perform(get("/subtract").param("operand1", "100").param("operand2", "50"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("50"));
+    }
+    @Test
+    public void testSubtractJson() throws Exception {
+        this.mvc.perform(get("/subtract_json").param("operand1", "100").param("operand2", "50"))
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.operand1").value(100))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.operand2").value(50))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.result").value(50))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.operator").value("subtract"));
+    }
+    @Test
+    public void testMultiplyLargeNumbers() throws Exception {
+        this.mvc.perform(get("/multiply").param("operand1", "999").param("operand2", "999"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("998001"));
+    }
 
 }
